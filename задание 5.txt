@@ -1,0 +1,34 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void generateChains(int N, int K, vector<int>& chain) {
+    if (chain.size() == N) {
+        // Выводим цепочку
+        for (int i = 0; i < N; i++) {
+            cout << chain[i];
+            if (i < N - 1) {
+                cout << " ";
+            }
+        }
+        cout << endl;
+        return;
+    }
+
+    for (int i = 1; i <= K; i++) {
+        chain.push_back(i);
+        generateChains(N, K, chain);
+        chain.pop_back();
+    }
+}
+
+int main() {
+    int N, K;
+    cin >> N >> K;
+
+    vector<int> chain;
+    generateChains(N, K, chain);
+
+    return 0;
+}
